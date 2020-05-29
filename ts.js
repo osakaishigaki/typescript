@@ -1,7 +1,7 @@
 "use strict";
 var address = /** @class */ (function () {
-    function address(zip) {
-        this.zip = zip;
+    function address(_zip) {
+        this._zip = _zip;
         this.address =
             {
                 '999-9999': {
@@ -15,16 +15,16 @@ var address = /** @class */ (function () {
             };
         // this.zip= zip;
     }
-    Object.defineProperty(address.prototype, "zipstr", {
+    Object.defineProperty(address.prototype, "zip", {
         get: function () {
-            return this.zip;
+            return this._zip;
+        },
+        set: function (value, string) {
+            this._zip = value;
         },
         enumerable: false,
         configurable: true
     });
-    address.prototype.getzip = function () {
-        return this.zip;
-    };
     address.prototype.getaddress = function () {
         var here = this.address[this.zip];
         return here.pre + " " + here.city;
@@ -32,4 +32,8 @@ var address = /** @class */ (function () {
     return address;
 }());
 var myaddress = new address('888-8888');
-console.log(myaddress.zipstrgit);
+// myaddress.zip = '777-7777';
+console.log(myaddress.zip);
+console.log(myaddress.getaddress());
+console.log(myaddress.addresses);
+myaddress.address = 'error';
